@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoppinglist</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+
+//model
+
+let shoppingList = [];
+let listItem = '';
+
+//view 
+updateView();
+
+function updateView(){
+    document.getElementById('app').innerHTML = /*HTML*/ `
+    
+    <h1>Shopping List</h1>
+    
+    <input  type="text" 
+            onchange="updateValue(this.value)" 
+            id="inputField" /><br/>
+
+    <br><button onclick="addToList()">Legg til i liste</button>
+    <button onclick="deleteFromList()">Fjern fra liste</button>
+    
+    <p class="display" id="displayArea"></p>
+        `
+        for(let index = 0; index < shoppingList.length; index++){
+            document.getElementById('displayArea').innerHTML += /*HTML*/ `
+            <li>${shoppingList[index]}</li>`
+        }
+    }
+       
+
+//controller
+
+function updateValue(inputValue){
+        listItem = inputValue
+    }
+
+ function addToList(){
+        shoppingList.push(listItem) 
+        updateView();
+    }
+
+    function deleteFromList(){
+        shoppingList.splice(listItem)
+        updateView();
+    }
+
+
+
+</script>
+</body>
+</html>
